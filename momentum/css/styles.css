@@ -63,7 +63,7 @@ button {
     background: none;
     outline: none;
     border: 1px solid white;
-    border-radius: 50%;
+    border-radius: 3px;
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -88,4 +88,12 @@ li > label {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+li > button {
+    display: none;
+}
+
+li:hover > button {
+    display: block;
 }
