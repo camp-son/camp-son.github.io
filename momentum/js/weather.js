@@ -10,7 +10,6 @@
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 temperatureElement.innerText = `${data.weather[0].main} ${data.main.temp}`;
                 addressElement.innerText = data.name;
             });
