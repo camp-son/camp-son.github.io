@@ -37,14 +37,10 @@ const loggedOutUser = () => {
     addFormSubmit();
 };
 
-const main = () => {
-    const savedUsername = localStorage.getItem(USERNAME_KEY);
+const savedUsername = localStorage.getItem(USERNAME_KEY);
 
-    if (savedUsername) {
-        loggedInUser();
-    } else {
-        loggedOutUser();
-    }
-};
-
-main();
+if (savedUsername) {
+    loggedInUser();
+} else {
+    loggedOutUser();
+}
