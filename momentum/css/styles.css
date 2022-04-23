@@ -2,6 +2,7 @@
 ul, ol { list-style: none; }
 
 body {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,6 +35,7 @@ h2 {
 
 form {
     margin-bottom: 20px;
+    width: 520px;
 }
 
 input[type="text"] {
@@ -72,16 +74,20 @@ button {
 ul {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     font-size: 24px;
+
+    flex: 0 0 300px;
+    overflow-y: scroll;
 }
 
 li {
-    width: 100%;
     display: flex;
-    width: 350px;
+    width: 520px;
+    flex: 0 0 30px;
     justify-content: space-between;
     align-items: center;
+    padding: 15px;
+    border: 1px solid white;
 }
 
 li > label {
@@ -90,8 +96,15 @@ li > label {
     gap: 10px;
 }
 
+li > label > span {
+    width: 440px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 li > label > span.done {
     text-decoration: line-through;
+    color: gray;
 }
 
 li > button {
@@ -100,4 +113,23 @@ li > button {
 
 li:hover > button {
     display: block;
+}
+
+aside {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: right;
+}
+
+aside > span:first-child {
+    font-size: 16px;
+}
+
+aside > span:last-child {
+    font-size: 12px;
 }
