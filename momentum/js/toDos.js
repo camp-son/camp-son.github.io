@@ -14,6 +14,19 @@ const removeToDo = (e) => {
     saveToDos();
 };
 
+const checkToDo = (e) => {
+    const checkboxElement = e.target;
+    const labelElement = checkboxElement.parentNode;
+    const liElement = labelElement.parentNode;
+    const textElement = labelElement.querySelector('span');
+    
+    const targetTodo = toDos.find(({ id }) => id.toString() === liElement.id);
+    toDos = toDos.map((todo) => todo.id === targetTodo.id ? { ...todo, done: !todo.done } : todo);
+    textElement.className = !targetTodo.done ? 'done' : '';
+
+    saveToDos();
+};
+
 const saveToDos = () => {
     localStorage.setItem(TODO_LIST_KEY, JSON.stringify(toDos));
 };
@@ -29,9 +42,12 @@ const paintToDo = (todo) => {
     const doneCheckboxElement = document.createElement('input');
     doneCheckboxElement.id = labelId;
     doneCheckboxElement.type = 'checkbox';
+    doneCheckboxElement.checked = todo.done;
+    doneCheckboxElement.addEventListener('click', checkToDo);
 
     const toDoTextElement = document.createElement('span');
     toDoTextElement.innerText = todo.text;
+    toDoTextElement.className = todo.done ? 'done' : '';
 
     const deleteButtonElement = document.createElement('button');
     deleteButtonElement.type = 'button';

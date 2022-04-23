@@ -90,6 +90,10 @@ li > label {
     gap: 10px;
 }
 
+li > label > span.done {
+    text-decoration: line-through;
+}
+
 li > button {
     display: none;
 }
