@@ -6,20 +6,27 @@ const toDoList = document.querySelector('#toDoList');
 
 const USERNAME_KEY = 'username';
 
+const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem(USERNAME_KEY, nameInput.value);
+    loggedInUser();
+};
+
+const addFormSubmit = () => {
+    nameForm.addEventListener('submit', handleSubmit);
+};
+
+const removeFormSubmit = () => {
+    nameForm.removeEventListener('submit', handleSubmit);
+};
+
 const loggedInUser = () => {
     const username = localStorage.getItem(USERNAME_KEY);
     titleElement.innerText = `Hello, ${username}!`;
     nameForm.classList.add('hidden');
     toDoForm.classList.remove('hidden');
     toDoList.classList.remove('hidden');
-};
-
-const addFormSubmit = () => {
-    nameForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        localStorage.setItem(USERNAME_KEY, nameInput.value);
-        loggedInUser();
-    });
+    removeFormSubmit();
 };
 
 const loggedOutUser = () => {
@@ -28,9 +35,7 @@ const loggedOutUser = () => {
     toDoForm.classList.add('hidden');
     toDoList.classList.add('hidden');
     addFormSubmit();
-}
-
-
+};
 
 const main = () => {
     const savedUsername = localStorage.getItem(USERNAME_KEY);
