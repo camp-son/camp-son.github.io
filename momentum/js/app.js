@@ -1,9 +1,45 @@
 const titleElement = document.querySelector('.title');
+const nameForm = document.querySelector('#nameForm');
+const nameInput = nameForm.querySelector('input');
+const toDoForm = document.querySelector('#toDoForm');
+const toDoList = document.querySelector('#toDoList');
 
-const savedUsername = localStorage.getItem('username');
+const USERNAME_KEY = 'username';
 
-if (savedUsername) {
-    titleElement.innerText = `Hello, ${savedUsername}!`;
-} else {
-    titleElement.innerText = 'Welcome to world!';
+const loggedInUser = () => {
+    const username = localStorage.getItem(USERNAME_KEY);
+    titleElement.innerText = `Hello, ${username}!`;
+    nameForm.classList.add('hidden');
+    toDoForm.classList.remove('hidden');
+    toDoList.classList.remove('hidden');
+};
+
+const addFormSubmit = () => {
+    nameForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        localStorage.setItem(USERNAME_KEY, nameInput.value);
+        loggedInUser();
+    });
+};
+
+const loggedOutUser = () => {
+    titleElement.innerText = `Welcome to to-do world`;
+    nameForm.classList.remove('hidden');
+    toDoForm.classList.add('hidden');
+    toDoList.classList.add('hidden');
+    addFormSubmit();
 }
+
+
+
+const main = () => {
+    const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+    if (savedUsername) {
+        loggedInUser();
+    } else {
+        loggedOutUser();
+    }
+};
+
+main();
