@@ -80,7 +80,7 @@ toDoForm.addEventListener('submit', (e) => {
 
 const savedToDos = JSON.parse(localStorage.getItem(TODO_LIST_KEY));
 
-if (saveToDos) {
+if (savedToDos) {
     toDos = savedToDos;
-    savedToDos.forEach(paintToDo);
+    toDos.forEach(paintToDo);
 }
