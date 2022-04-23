@@ -8,6 +8,8 @@ let toDos = [];
 const removeToDo = (e) => {
     const buttonElement = e.target;
     const liElement = buttonElement.parentNode;
+    const checkboxElement = liElement.querySelector('input[type="checkbox"]');
+    checkboxElement.removeEventListener('click', checkToDo);
     buttonElement.removeEventListener('click', removeToDo);
     toDos = toDos.filter((todo) => todo.id.toString() !== liElement.id);
     liElement.remove();
