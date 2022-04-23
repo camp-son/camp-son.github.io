@@ -9,6 +9,10 @@ body {
     background: #636363;
 }
 
+.hidden {
+    display: none;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
